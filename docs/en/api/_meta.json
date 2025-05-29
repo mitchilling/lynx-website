@@ -272,7 +272,7 @@
     "label": "sidebar.errors"
   },
   {
-    "type:": "file",
+    "type": "file",
     "name": "errors/lynx-error",
     "label": "sidebar.errors.lynx-error",
     "overviewHeaders": [],
