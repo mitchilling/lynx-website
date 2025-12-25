@@ -41,44 +41,6 @@
             }
           }
         },
-        "unsupported_value_": {
-          "__compat": {
-            "description": "<code>normal</code>",
-            "status": {
-              "deprecated": false,
-              "experimental": false
-            },
-            "support": {
-              "android": {
-                "notes": "",
-                "version_added": false
-              },
-              "ios": {
-                "notes": "",
-                "version_added": false
-              },
-              "harmony": {
-                "notes": "",
-                "version_added": false
-              },
-              "clay_android": {
-                "version_added": false
-              },
-              "clay_ios": {
-                "version_added": false
-              },
-              "clay_macos": {
-                "version_added": false
-              },
-              "clay_windows": {
-                "version_added": false
-              },
-              "web_lynx": {
-                "version_added": true
-              }
-            }
-          }
-        },
         "supported_in_flex_layout": {
           "__compat": {
             "description": "Supported in Flexible Box Layout",
@@ -116,7 +78,7 @@
               }
             }
           },
-          "nested_value_1": {
+          "stretch-flex-start-flex-end-center": {
             "__compat": {
               "description": "<code>stretch</code>, <code>flex-start</code>, <code>flex-end</code>, <code>center</code>",
               "status": {
@@ -154,45 +116,7 @@
               }
             }
           },
-          "nested_value_2": {
-            "__compat": {
-              "description": "<code>baseline</code>",
-              "status": {
-                "deprecated": false,
-                "experimental": false
-              },
-              "support": {
-                "android": {
-                  "notes": "",
-                  "version_added": "2.6"
-                },
-                "ios": {
-                  "notes": "",
-                  "version_added": "2.7"
-                },
-                "harmony": {
-                  "notes": "",
-                  "version_added": "3.4"
-                },
-                "clay_android": {
-                  "version_added": "2.7"
-                },
-                "clay_ios": {
-                  "version_added": "2.7"
-                },
-                "clay_macos": {
-                  "version_added": "2.7"
-                },
-                "clay_windows": {
-                  "version_added": "2.7"
-                },
-                "web_lynx": {
-                  "version_added": true
-                }
-              }
-            }
-          },
-          "nested_value_3": {
+          "start-and-end": {
             "__compat": {
               "description": "<code>start</code> and <code>end</code>",
               "status": {
@@ -223,6 +147,44 @@
                 },
                 "clay_windows": {
                   "version_added": "2.16"
+                },
+                "web_lynx": {
+                  "version_added": true
+                }
+              }
+            }
+          },
+          "baseline": {
+            "__compat": {
+              "description": "",
+              "status": {
+                "deprecated": false,
+                "experimental": false
+              },
+              "support": {
+                "android": {
+                  "notes": "",
+                  "version_added": "2.6"
+                },
+                "ios": {
+                  "notes": "",
+                  "version_added": "2.7"
+                },
+                "harmony": {
+                  "notes": "",
+                  "version_added": "3.4"
+                },
+                "clay_android": {
+                  "version_added": "2.7"
+                },
+                "clay_ios": {
+                  "version_added": "2.7"
+                },
+                "clay_macos": {
+                  "version_added": "2.7"
+                },
+                "clay_windows": {
+                  "version_added": "2.7"
                 },
                 "web_lynx": {
                   "version_added": true
@@ -268,7 +230,7 @@
               }
             }
           },
-          "nested_value_1": {
+          "flex-start-flex-end-center": {
             "__compat": {
               "description": "<code>flex-start</code>, <code>flex-end</code>, <code>center</code>",
               "status": {
@@ -306,7 +268,7 @@
               }
             }
           },
-          "nested_value_2": {
+          "start-and-end": {
             "__compat": {
               "description": "<code>start</code> and <code>end</code>",
               "status": {
@@ -344,7 +306,7 @@
               }
             }
           },
-          "nested_value_3": {
+          "baseline-and-stretch": {
             "__compat": {
               "description": "<code>baseline</code> and <code>stretch</code>",
               "status": {
@@ -420,7 +382,7 @@
               }
             }
           },
-          "nested_value_1": {
+          "stretch-flex-start-flex-end-center": {
             "__compat": {
               "description": "<code>stretch</code>, <code>flex-start</code>, <code>flex-end</code>, <code>center</code>",
               "status": {
@@ -458,7 +420,7 @@
               }
             }
           },
-          "nested_value_2": {
+          "start-and-end": {
             "__compat": {
               "description": "<code>start</code> and <code>end</code>",
               "status": {
@@ -496,9 +458,9 @@
               }
             }
           },
-          "nested_value_3": {
+          "baseline": {
             "__compat": {
-              "description": "<code>baseline</code>",
+              "description": "",
               "status": {
                 "deprecated": false,
                 "experimental": false
@@ -531,6 +493,44 @@
                 "web_lynx": {
                   "version_added": true
                 }
+              }
+            }
+          }
+        },
+        "normal": {
+          "__compat": {
+            "description": "",
+            "status": {
+              "deprecated": false,
+              "experimental": false
+            },
+            "support": {
+              "android": {
+                "notes": "",
+                "version_added": false
+              },
+              "ios": {
+                "notes": "",
+                "version_added": false
+              },
+              "harmony": {
+                "notes": "",
+                "version_added": false
+              },
+              "clay_android": {
+                "version_added": false
+              },
+              "clay_ios": {
+                "version_added": false
+              },
+              "clay_macos": {
+                "version_added": false
+              },
+              "clay_windows": {
+                "version_added": false
+              },
+              "web_lynx": {
+                "version_added": true
               }
             }
           }
