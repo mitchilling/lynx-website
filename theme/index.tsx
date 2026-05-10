@@ -15,7 +15,14 @@ import {
   Search as PluginAlgoliaSearch,
   ZH_LOCALES,
 } from '@rspress/plugin-algolia/runtime';
-import { forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import './index.scss';
 import { HomeLayout as LynxUIHomeLayout } from './lynx-ui-home';
@@ -183,6 +190,10 @@ function MainHomeLayout(props: Parameters<typeof BaseHomeLayout>[0]) {
 
   const { pre: PreWithCodeButtonGroup, code: Code } =
     basicGetCustomMDXComponent();
+  const copyElementRef = useRef<HTMLElement | null>(null);
+  const CodeWithRef = Code as unknown as React.ComponentType<
+    React.ComponentProps<typeof Code> & { ref?: React.Ref<HTMLElement> }
+  >;
 
   // Rspress would pass `afterHero: undefined` and `afterHeroActions: undefined` props to HomeLayout,
   const {
@@ -202,12 +213,18 @@ function MainHomeLayout(props: Parameters<typeof BaseHomeLayout>[0]) {
           <PreWithCodeButtonGroup
             containerElementClassName="language-bash"
             codeButtonGroupProps={{
+              copyElementRef:
+                copyElementRef as unknown as React.RefObject<HTMLDivElement | null>,
               showCodeWrapButton: false,
             }}
           >
-            <Code className="language-bash" style={{ textAlign: 'center' }}>
+            <CodeWithRef
+              ref={copyElementRef}
+              className="language-bash"
+              style={{ textAlign: 'center' }}
+            >
               npm create rspeedy@latest
-            </Code>
+            </CodeWithRef>
           </PreWithCodeButtonGroup>
         </div>
       </>
@@ -285,32 +302,41 @@ const Search = () => {
 
 export { HomeLayout, Layout, Search };
 
-const Link = forwardRef(
-  (
-    props: React.ComponentProps<typeof BaseLink>,
-    ref: React.LegacyRef<HTMLAnchorElement>,
-  ) => {
-    const { href, children, className, ...restProps } = props;
-    const getLangPrefix = (lang: string) => (lang === 'en' ? '' : `/${lang}`);
-    if (href && href.startsWith(`${getLangPrefix(useLang())}/blog`)) {
-      return (
-        <BaseLink
-          href={`/next${removeBase(href)}`}
-          className={`rp-link ${className}`}
-          ref={ref}
-          {...restProps}
-        >
-          {children}
-        </BaseLink>
-      );
-    }
+type BaseLinkProps = Parameters<typeof BaseLink>[0];
+type BaseLinkRestProps = Omit<
+  BaseLinkProps,
+  'href' | 'children' | 'className' | 'style'
+>;
+
+const Link = forwardRef<HTMLAnchorElement, BaseLinkProps>((props, ref) => {
+  const { href, children, className, style, ...restProps } = props;
+  const safeRestProps = restProps as BaseLinkRestProps;
+  const getLangPrefix = (lang: string) => (lang === 'en' ? '' : `/${lang}`);
+  if (href && href.startsWith(`${getLangPrefix(useLang())}/blog`)) {
     return (
-      <BaseLink href={href} className={className} ref={ref} {...restProps}>
+      <BaseLink
+        href={`/next${removeBase(href)}`}
+        className={className ? `rp-link ${className}` : 'rp-link'}
+        ref={ref}
+        style={style as any}
+        {...safeRestProps}
+      >
         {children}
       </BaseLink>
     );
-  },
-);
+  }
+  return (
+    <BaseLink
+      href={href}
+      className={className}
+      ref={ref}
+      style={style as any}
+      {...safeRestProps}
+    >
+      {children}
+    </BaseLink>
+  );
+});
 
 export { Link }; // override Link from @rspress/core/theme-original
 
