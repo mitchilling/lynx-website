@@ -8,6 +8,16 @@ import type {
   LunaThemeVariant,
   StudioViewMode,
 } from '@dugyu/luna-studio';
+import {
+  Columns2,
+  GalleryHorizontalEnd,
+  Moon,
+  Sparkle,
+  Grid2x2,
+  Sparkles,
+  Sun,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -17,9 +27,19 @@ import {
   createDemoResolveFocusKey,
   createDemoStageGlobalPropsBuilder,
 } from './interaction';
-import { lunaStudioDemoLayout, lunaStudioDemoModeGrid } from './layout';
+import {
+  lunaStudioDemoLayout,
+  lunaStudioDemoModeGrid,
+  lunaStudioShowcaseLayout,
+} from './layout';
 
 const VIEW_MODES: StudioViewMode[] = ['compare', 'focus', 'lineup'];
+
+const NEXT_VIEW_MODE: Record<StudioViewMode, StudioViewMode> = {
+  compare: 'focus',
+  focus: 'lineup',
+  lineup: 'compare',
+};
 
 const resolveFocusKey = createDemoResolveFocusKey(lunaStudioDemoLayout);
 
@@ -41,6 +61,73 @@ function ChipButton(props: {
       aria-pressed={props.active}
     >
       {props.children}
+    </Button>
+  );
+}
+
+const VIEW_MODE_ITEMS: Array<{
+  value: StudioViewMode;
+  label: string;
+  icon: LucideIcon;
+}> = [
+  { value: 'compare', label: 'Compare', icon: Columns2 },
+  { value: 'focus', label: 'Focus', icon: GalleryHorizontalEnd },
+  { value: 'lineup', label: 'Lineup', icon: Grid2x2 },
+];
+
+const THEME_VARIANT_ITEMS: Array<{
+  value: LunaThemeVariant;
+  label: string;
+  icon: LucideIcon;
+}> = [
+  { value: 'luna', label: 'Luna', icon: Sparkle },
+  { value: 'lunaris', label: 'Lunaris', icon: Sparkles },
+];
+
+const THEME_MODE_ITEMS: Array<{
+  value: LunaThemeMode;
+  label: string;
+  icon: LucideIcon;
+}> = [
+  { value: 'light', label: 'Light', icon: Sun },
+  { value: 'dark', label: 'Dark', icon: Moon },
+];
+
+function IconToggleButton(props: {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+  icon: LucideIcon;
+  themeMode: LunaThemeMode;
+  className?: string;
+}) {
+  const isLight = props.themeMode === 'light';
+  const activeClassName = isLight
+    ? 'bg-black text-white ring-1 ring-black/20 shadow-sm'
+    : 'bg-white/20 text-white ring-1 ring-white/20 shadow-sm';
+  const inactiveClassName = isLight
+    ? 'bg-transparent text-black/60 opacity-70 hover:bg-black/5 hover:text-black hover:opacity-100'
+    : 'bg-transparent text-white/60 opacity-70 hover:bg-white/10 hover:text-white hover:opacity-100';
+
+  return (
+    <Button
+      type="button"
+      size="icon"
+      variant="ghost"
+      aria-pressed={props.active}
+      aria-label={props.label}
+      onClick={props.onClick}
+      title={props.label}
+      className={cn(
+        'h-9 w-9 rounded-full border transition-all hover:scale-110 focus-visible:ring-2 focus-visible:ring-offset-2',
+        isLight
+          ? 'border-black/10 focus-visible:ring-black/30 focus-visible:ring-offset-white'
+          : 'border-white/10 focus-visible:ring-white/40 focus-visible:ring-offset-black',
+        props.active ? activeClassName : inactiveClassName,
+        props.className,
+      )}
+    >
+      <props.icon className="h-4 w-4 md:h-5 md:w-5" />
     </Button>
   );
 }
@@ -79,10 +166,7 @@ function LunaStudio() {
       if (params.suggestedViewMode !== undefined) {
         return params.suggestedViewMode;
       }
-
-      const index = VIEW_MODES.indexOf(prevMode);
-      if (index < 0) return VIEW_MODES[0];
-      return VIEW_MODES[(index + 1) % VIEW_MODES.length];
+      return NEXT_VIEW_MODE[prevMode] ?? 'compare';
     });
   };
 
@@ -96,7 +180,7 @@ function LunaStudio() {
   const containerClassName =
     themeMode === 'light'
       ? 'bg-[#f5f5f5] text-black'
-      : 'bg-[#0d0d0d] text-white';
+      : 'bg-[#000000] text-white';
 
   const dividerClassName =
     themeMode === 'light' ? 'bg-black/10' : 'bg-white/10';
@@ -123,7 +207,7 @@ function LunaStudio() {
     <div
       ref={containerRef}
       className={[
-        'relative h-[360px] w-full overflow-hidden',
+        'relative h-[360px] w-full overflow-hidden transition-all',
         containerClassName,
       ].join(' ')}
       style={{ height: containerHeight }}
@@ -195,4 +279,145 @@ function LunaStudio() {
   );
 }
 
-export { LunaStudio };
+function LunaStudioShowcase({
+  className,
+  defaultViewMode = 'lineup',
+  defaultThemeMode,
+}: {
+  className?: string;
+  defaultViewMode?: StudioViewMode;
+  defaultThemeMode?: LunaThemeMode;
+}) {
+  const [viewMode, setViewMode] = useState<StudioViewMode>(defaultViewMode);
+  const [themeVariant, setThemeVariant] = useState<LunaThemeVariant>('lunaris');
+  const [themeMode, setThemeMode] = useState<LunaThemeMode>(
+    defaultThemeMode ?? 'dark',
+  );
+  const [studioAutoplay, setStudioAutoplay] = useState(false);
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { width: containerWidth } = useContainerResize({ ref: containerRef });
+  const containerHeight =
+    containerWidth === undefined
+      ? 420
+      : containerWidth < 640
+        ? 520
+        : containerWidth < 800
+          ? 580
+          : 640;
+
+  const studioThemeKey: LunaThemeKey = `${themeVariant}-${themeMode}`;
+
+  const handleRequestViewModeChange = (params: {
+    suggestedViewMode?: StudioViewMode;
+  }) => {
+    setViewMode((prevMode) => {
+      if (params.suggestedViewMode !== undefined) {
+        return params.suggestedViewMode;
+      }
+      return NEXT_VIEW_MODE[prevMode] ?? defaultViewMode;
+    });
+  };
+
+  const handleInteraction = createDemoInteractionHandler({
+    onThemeModeChange: setThemeMode,
+    onThemeVariantChange: setThemeVariant,
+    onAutoplayChange: setStudioAutoplay,
+    onRequestViewModeChange: handleRequestViewModeChange,
+  });
+
+  const isLight = themeMode === 'light';
+  const containerClassName = isLight
+    ? 'bg-[#f5f5f5] text-black'
+    : 'bg-[#000000] text-white';
+  const controlsBgClassName = isLight ? 'bg-[#ffffffbb]' : 'bg-[#0000001a]';
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn(
+        'relative isolate w-full overflow-hidden rounded-[24px]',
+        containerClassName,
+        className,
+      )}
+      style={{ height: containerHeight }}
+    >
+      <div className="relative z-0 h-full w-full p-6 px-4">
+        <Choreography
+          bundleRoot={BUNDLE_ROOT}
+          className="gap-4"
+          layout={lunaStudioShowcaseLayout}
+          modeGrid={lunaStudioDemoModeGrid}
+          viewMode={viewMode}
+          defaultFocusKey="button"
+          resolveFocusKey={resolveFocusKey}
+          buildStageGlobalProps={createDemoStageGlobalPropsBuilder({
+            studioThemeKey,
+            studioAutoplay,
+          })}
+          interactionTarget="content"
+          onInteraction={handleInteraction}
+          themeKey={studioThemeKey}
+        />
+      </div>
+
+      <div
+        className={cn(
+          'absolute bottom-4 right-4 z-50 rounded-full shadow-sm backdrop-blur transform-gpu',
+          controlsBgClassName,
+        )}
+      >
+        <div className="flex items-center gap-1 px-2 py-2 md:flex-col md:justify-between md:gap-2 md:px-2 md:py-3">
+          {VIEW_MODE_ITEMS.map((item) => (
+            <IconToggleButton
+              key={item.value}
+              active={viewMode === item.value}
+              icon={item.icon}
+              label={item.label}
+              themeMode={themeMode}
+              onClick={() => setViewMode(item.value)}
+            />
+          ))}
+
+          <div
+            className={cn(
+              'mx-2 h-px w-6 md:mx-0 md:h-6 md:w-px',
+              isLight ? 'bg-black/10' : 'bg-white/10',
+            )}
+          />
+
+          {THEME_VARIANT_ITEMS.map((item) => (
+            <IconToggleButton
+              key={item.value}
+              active={themeVariant === item.value}
+              icon={item.icon}
+              label={item.label}
+              themeMode={themeMode}
+              onClick={() => setThemeVariant(item.value)}
+            />
+          ))}
+
+          <div
+            className={cn(
+              'mx-2 h-px w-6 md:mx-0 md:h-6 md:w-px',
+              isLight ? 'bg-black/10' : 'bg-white/10',
+            )}
+          />
+
+          {THEME_MODE_ITEMS.map((item) => (
+            <IconToggleButton
+              key={item.value}
+              active={themeMode === item.value}
+              icon={item.icon}
+              label={item.label}
+              themeMode={themeMode}
+              onClick={() => setThemeMode(item.value)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export { LunaStudio, LunaStudioShowcase };
