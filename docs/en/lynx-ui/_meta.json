@@ -30,6 +30,24 @@
     "type": "divider"
   },
   {
+    "type": "section-header",
+    "label": "@lynx-js/motion"
+  },
+  {
+    "type": "file",
+    "name": "motion",
+    "label": "Full",
+    "tag": "Experimental"
+  },
+  {
+    "type": "file",
+    "name": "motion-mini",
+    "label": "Mini"
+  },
+  {
+    "type": "divider"
+  },
+  {
     "type": "dir-section-header",
     "name": "components",
     "label": "Components"

@@ -30,6 +30,24 @@
     "type": "divider"
   },
   {
+    "type": "section-header",
+    "label": "@lynx-js/motion"
+  },
+  {
+    "type": "file",
+    "name": "motion",
+    "label": "完整版",
+    "tag": "实验性"
+  },
+  {
+    "type": "file",
+    "name": "motion-mini",
+    "label": "轻量版（Mini）"
+  },
+  {
+    "type": "divider"
+  },
+  {
     "type": "dir-section-header",
     "name": "components",
     "label": "组件"

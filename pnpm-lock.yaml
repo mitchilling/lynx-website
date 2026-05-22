@@ -346,6 +346,9 @@ importers:
       '@lynx-example/main-thread':
         specifier: 0.4.7
         version: 0.4.7(@lynx-js/types@3.7.0)(@types/react@18.3.28)
+      '@lynx-example/motion':
+        specifier: 0.2.2
+        version: 0.2.2(@lynx-js/types@3.7.0)(@types/react@18.3.28)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@lynx-example/native-element':
         specifier: 0.6.7
         version: 0.6.7(@lynx-js/types@3.7.0)(@types/react@18.3.28)
@@ -1494,6 +1497,10 @@ packages:
     resolution: {integrity: sha512-7PMUhNlfX7lIM1SNeJF4PJBg7uyOs76iY7qWGsv/8gRiHuB4tu7UBtqb5X69Oy5kBKpZfZkcAor0F/ECsNQBSw==}
     engines: {node: '>=18'}
 
+  '@lynx-example/motion@0.2.2':
+    resolution: {integrity: sha512-dmrei0YPQJwfnKUNl845854sImA7hcFVNYHrhPmqwy9vDgsLoQqlj6gKJ8JVZhwShEhL5Vh9U9opsCSMPIsGhg==}
+    engines: {node: '>=18'}
+
   '@lynx-example/native-element@0.6.7':
     resolution: {integrity: sha512-hLIzo9Sdb/4ZeDZOQoiPLj8YQS9N6CLIg766LkfiYFw6qbQjnnuK7MYmb65Fl/Sc/IDb5tG1Xv5WEMBacVg0iQ==}
     engines: {node: '>=18'}
@@ -1818,6 +1825,15 @@ packages:
 
   '@lynx-js/react@0.120.0':
     resolution: {integrity: sha512-XDDiMeQdK+FVlCHmeY3rUbvuTA2WPH/+8JznkUDVwUIwKmojoeEUOMCCXny434hIpBEtDeOtBoIEhxg569QGTw==}
+    peerDependencies:
+      '@lynx-js/types': '*'
+      '@types/react': ^18
+    peerDependenciesMeta:
+      '@lynx-js/types':
+        optional: true
+
+  '@lynx-js/react@0.121.0':
+    resolution: {integrity: sha512-V3/1+kRM7ugFZbhfldnPyJH65gZI06qa9E2/lGM8b+almHWzn+i9G1imMZiHROKlkOT495TauMOH4FiH1U47Fw==}
     peerDependencies:
       '@lynx-js/types': '*'
       '@types/react': ^18
@@ -7564,6 +7580,18 @@ snapshots:
       - '@lynx-js/types'
       - '@types/react'
 
+  '@lynx-example/motion@0.2.2(@lynx-js/types@3.7.0)(@types/react@18.3.28)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
+    dependencies:
+      '@lynx-js/luna-styles': 0.1.0
+      '@lynx-js/motion': 0.0.3(@lynx-js/react@0.121.0(@lynx-js/types@3.7.0)(@types/react@18.3.28))(@lynx-js/types@3.7.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@lynx-js/react': 0.121.0(@lynx-js/types@3.7.0)(@types/react@18.3.28)
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - '@lynx-js/types'
+      - '@types/react'
+      - react
+      - react-dom
+
   '@lynx-example/native-element@0.6.7(@lynx-js/types@3.7.0)(@types/react@18.3.28)':
     dependencies:
       '@lynx-js/react': 0.115.3(@lynx-js/types@3.7.0)(@types/react@18.3.28)
@@ -8021,6 +8049,19 @@ snapshots:
       - react
       - react-dom
 
+  '@lynx-js/motion@0.0.3(@lynx-js/react@0.121.0(@lynx-js/types@3.7.0)(@types/react@18.3.28))(@lynx-js/types@3.7.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
+    dependencies:
+      '@lynx-js/react': 0.121.0(@lynx-js/types@3.7.0)(@types/react@18.3.28)
+      framer-motion: 12.34.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      motion-dom: 12.23.12
+      motion-utils: 12.23.6
+    optionalDependencies:
+      '@lynx-js/types': 3.7.0
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - react
+      - react-dom
+
   '@lynx-js/react-use@0.1.3(@lynx-js/react@0.114.0(@lynx-js/types@3.7.0)(@types/react@18.3.28))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
       '@lynx-js/react': 0.114.0(@lynx-js/types@3.7.0)(@types/react@18.3.28)
@@ -8084,6 +8125,13 @@ snapshots:
       '@lynx-js/types': 3.7.0
 
   '@lynx-js/react@0.120.0(@lynx-js/types@3.7.0)(@types/react@18.3.28)':
+    dependencies:
+      '@types/react': 18.3.28
+      preact: '@lynx-js/internal-preact@10.29.1-20260424024911-12b794f'
+    optionalDependencies:
+      '@lynx-js/types': 3.7.0
+
+  '@lynx-js/react@0.121.0(@lynx-js/types@3.7.0)(@types/react@18.3.28)':
     dependencies:
       '@types/react': 18.3.28
       preact: '@lynx-js/internal-preact@10.29.1-20260424024911-12b794f'
