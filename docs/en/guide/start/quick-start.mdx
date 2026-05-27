@@ -1,18 +1,44 @@
+---
+description: 'Try Lynx with the Explorer sandbox app, no native toolchain required.'
+---
+
 import { QRCodeSVG } from 'qrcode.react';
 import { PackageManagerTabs, Steps } from '@theme';
-import { Go, PlatformTabs } from '@lynx';
+import { ChoiceTabs, Go, PlatformTabs } from '@lynx';
 import * as NextSteps from '@lynx/NextSteps';
 
-# Quick Start
+# Try with Explorer
 
-Welcome to the Lynx documentation! We will create a Lynx project and start developing.
+<ChoiceTabs active="explorer">
+  <ChoiceTabs.Tab
+    value="explorer"
+    label="Try with Explorer"
+    description="Run Lynx pages in the pre-built sandbox app"
+    platforms={['ios', 'android', 'harmony', 'web', 'macos', 'windows']}
+    href="/guide/start/quick-start"
+  />
+  <ChoiceTabs.Tab
+    value="building-block"
+    label="Integrate with Existing Apps"
+    description="Use Lynx as a UI building block in your native or web app"
+    platforms={['ios', 'android', 'harmony', 'web', 'macos', 'windows']}
+    href="/guide/start/integrate-with-existing-apps"
+  />
+  <ChoiceTabs.Tab
+    value="framework"
+    label="Build with an App Framework"
+    description="Build a new mobile or desktop app on a Lynx-based framework"
+    platforms={['ios', 'android', '|', 'macos', 'windows']}
+    href="/guide/start/build-with-app-framework"
+  />
+</ChoiceTabs>
 
-## System Requirements
+Use [Lynx Explorer](https://github.com/lynx-family/lynx), a pre-built sandbox app, to start developing and previewing Lynx pages instantly, no native toolchain required. Great for learning, prototyping, and development. For production deployment, [integrate with your existing app](/guide/start/integrate-with-existing-apps) or [build a new app on an app framework](/guide/start/build-with-app-framework).
+
+### System Requirements
 
 - [Node.js 18](https://nodejs.org/en) or later.
   - Requires Node.js 18.19 when using TypeScript as configuration.
-
-## Installation
 
 <Steps>
 
@@ -171,7 +197,7 @@ Visit [Debugging](/guide/devtool/panels), learn how to debug your Lynx app.
 
 </Steps>
 
-## Next steps
+## Next Steps
 
 Here are a few things that we recommend exploring next. You can read them in any order.
 
@@ -181,7 +207,7 @@ ReactLynx is the official React framework designed specifically for Lynx, offeri
 
 <NextSteps.Root>
 <NextSteps.Step
-  href="/guide/start/tutorial-gallery"
+  href="/learn/gallery"
   title="Tutorial"
   description="Step-by-step walkthrough of building a Gallery page with Lynx"
 />
@@ -228,20 +254,6 @@ Learn how to describe UI in the Lynx engine.
   href="/guide/ui/scrolling"
   title="Scrolling"
   description="Learn how to use scrollable elements in Lynx"
-/>
-
-</NextSteps.Root>
-
-### Integration
-
-Learn how to integrate Lynx with existing iOS/Android/Web Apps.
-
-<NextSteps.Root>
-
-<NextSteps.Step
-  href="/guide/start/integrate-with-existing-apps"
-  title="Integration"
-  description="Integrate Lynx with existing Apps"
 />
 
 </NextSteps.Root>

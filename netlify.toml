@@ -7,6 +7,59 @@
   [headers.values]
     access-control-allow-origin = "https://www.unpkg.com"
 
+# Tutorials moved from /guide/start/tutorial-* to top-level /learn/*. The
+# /next/* rewrite at the bottom doesn't chain into these — direct hits to
+# the /next/ form need their own rules. The trailing splat catches the bare
+# URL plus the .html and .md variants in one rule.
+[[redirects]]
+  from = "/guide/start/tutorial-gallery*"
+  to = "/learn/gallery:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zh/guide/start/tutorial-gallery*"
+  to = "/zh/learn/gallery:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/guide/start/tutorial-product-detail*"
+  to = "/learn/product-detail:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zh/guide/start/tutorial-product-detail*"
+  to = "/zh/learn/product-detail:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/next/guide/start/tutorial-gallery*"
+  to = "/next/learn/gallery:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/next/zh/guide/start/tutorial-gallery*"
+  to = "/next/zh/learn/gallery:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/next/guide/start/tutorial-product-detail*"
+  to = "/next/learn/product-detail:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/next/zh/guide/start/tutorial-product-detail*"
+  to = "/next/zh/learn/product-detail:splat"
+  status = 301
+  force = true
+
+# Serve everything under /next/ from the site root.
 [[redirects]]
   from = "/next/*"
   to = "/:splat"

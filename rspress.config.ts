@@ -164,6 +164,23 @@ export default defineConfig({
           from: '/react/routing.html',
           to: '/react/routing/react-router.html',
         },
+        // Tutorials moved out of Get Started into top-level /learn/<slug>.
+        {
+          from: '^/guide/start/tutorial-gallery(\\.html)?$',
+          to: '/learn/gallery.html',
+        },
+        {
+          from: '^/zh/guide/start/tutorial-gallery(\\.html)?$',
+          to: '/zh/learn/gallery.html',
+        },
+        {
+          from: '^/guide/start/tutorial-product-detail(\\.html)?$',
+          to: '/learn/product-detail.html',
+        },
+        {
+          from: '^/zh/guide/start/tutorial-product-detail(\\.html)?$',
+          to: '/zh/learn/product-detail.html',
+        },
       ],
     }),
     sharedSidebarPlugin(),
