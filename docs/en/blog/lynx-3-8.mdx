@@ -1,5 +1,5 @@
 ---
-title: 'Lynx 3.8: Android WebAssembly, Smarter Layout, and Native Integration'
+title: 'Lynx 3.8: WebAssembly on Android, Plus Platform Updates'
 date: 2026-05-31
 sidebar: false
 authors: ['mitchell', 'lynx']
@@ -13,18 +13,11 @@ import { BlogHeader, Go } from '@lynx';
 
 Lynx 3.8 is now officially released!
 
-As outlined in our [2026 roadmap](/blog/lynx-open-source-roadmap-2026), Lynx 3.8 kicks off our new monthly release cadence. With that rhythm, each release is intentionally smaller and easier to evaluate. For 3.8, that means incremental but practical improvements across Android **WebAssembly**, embedded Lynx layout, text fitting, HarmonyOS SessionStorage, native integration, and DevTool protocol support.
-
-## Highlights
-
-- **Run WebAssembly on Android.** Lynx can now load and execute WebAssembly modules on the background thread through PrimJS.
-- **Let embedded content size itself.** `<frame>` now supports `auto-width` and `auto-height`, with intrinsic size reporting and load metrics.
-- **Fit text by rendered line count.** `-x-auto-font-size-line-ranges` lets one-line, two-line, and multi-line text use different font-size ranges.
-- **Improve native integration.** `LynxViewGroup` can reuse `LynxEngine`, HarmonyOS adds SessionStorage, and DevTool gains new protocol and debugging capabilities.
+As outlined in our [2026 roadmap](/blog/lynx-open-source-roadmap-2026), Lynx 3.8 kicks off our new monthly release cadence. Moving to monthly means each release will be smaller and more focused. For 3.8, that's **WebAssembly** on Android, `<frame>` auto-sizing, line-aware text fitting, HarmonyOS SessionStorage, `LynxEngine` reuse, and DevTool protocol updates.
 
 ## WebAssembly on Android
 
-This release introduces initial [WebAssembly](/guide/scripting-runtime/webassembly) support on Android through the PrimJS runtime integration. Lynx apps can now load and execute WebAssembly modules on the background thread, making it possible to move computation-heavy logic into WebAssembly when JavaScript is not the best fit.
+This release introduces initial [WebAssembly](/guide/scripting-runtime/webassembly) support on Android via the PrimJS runtime. Lynx apps can now load and execute WebAssembly modules on the background thread, making it possible to move computation-heavy logic into WebAssembly when JavaScript isn't fast enough.
 
 The current implementation focuses on common constructor-based flows:
 
@@ -44,7 +37,7 @@ The complete example below shows the same flow in a Lynx page:
   entry="src"
 />
 
-The current support covers `WebAssembly.Module` and `WebAssembly.Instance`, along with common-case support for `WebAssembly.Memory`, `WebAssembly.Table`, and `WebAssembly.Global`.
+The current implementation covers `WebAssembly.Module` and `WebAssembly.Instance` fully, plus common-case usage of `WebAssembly.Memory`, `WebAssembly.Table`, and `WebAssembly.Global`.
 
 ## Layout, Text, and Platform Coverage
 
@@ -60,7 +53,7 @@ For component-level UI work, see our recent [lynx-ui](/blog/lynx-ui) announcemen
 <frame src={url} auto-width auto-height />
 ```
 
-It also improves startup and observability with preset layout, better `data` and `global-props` transfer, intrinsic size reporting through `layoutchange`, and Android/iOS frame load metrics.
+It also improves startup and observability with preset layouts, better `data` and `global-props` passing, intrinsic size reporting through `layoutchange`, and `<frame>` load metrics on Android and iOS.
 
 ### Line-aware Auto Font Sizing
 
@@ -96,11 +89,11 @@ HarmonyOS `<view>` also gains [keyframe animation](/api/css/properties/animation
 
 ### Lynx Engine Reuse in LynxViewGroup
 
-On Android, `LynxViewGroup` can now cache and reuse a `LynxEngine` for `LynxView`s created from the same group. This is useful when an application repeatedly creates views from the same template bundle, such as in multi-page or embedded-view scenarios.
+On Android, `LynxViewGroup` can now cache and reuse a `LynxEngine` across `LynxView` instances created from the same group. This is useful when an application repeatedly creates views from the same template bundle, such as in multi-page or embedded-view scenarios.
 
-We have seen many apps where users leave and re-enter the same Lynx page. In these cases, caching the `LynxEngine` can avoid repeatedly destroying and recreating large engine objects. It can also reuse work already done inside the cached engine, including the constructed UI tree, to help the next page entry render faster.
+We've seen many apps where users leave and re-enter the same Lynx page. In these cases, caching the `LynxEngine` avoids the cost of repeatedly destroying and recreating it, and can reuse work the engine has already done, like the constructed UI tree, so re-entering the page renders faster.
 
-Applications do not need to manage `LynxEngine` directly. Create a group with engine caching enabled, attach that group to each `LynxViewBuilder`, and release the group when it is no longer needed:
+Applications don't need to manage `LynxEngine` directly. Create a group with caching enabled, attach it to each `LynxViewBuilder`, and release it when no longer needed:
 
 ```java
 ILynxViewGroup group = new LynxViewGroupBuilder()
@@ -124,17 +117,17 @@ group.release();
 
 ### Resource Loading Callback
 
-`LynxViewClientV2` adds an `onResourceLoaded` callback so clients can observe resource loading from native code. This gives host applications a clearer place to collect resource timing, success, and failure information.
+`LynxViewClientV2` adds an `onResourceLoaded` callback so clients can observe resource loading from native code. This gives host applications a single hook for resource timing, success/failure status, and other diagnostics.
 
 ### SessionStorage on HarmonyOS
 
-HarmonyOS now supports the SessionStorage API for cross-page data sharing. Front-end code can use the existing [`lynx.setSessionStorageItem`](/api/lynx-api/lynx/lynx-set-session-storage), [`lynx.getSessionStorageItem`](/api/lynx-api/lynx/lynx-get-session-storage), [`lynx.subscribeSessionStorage`](/api/lynx-api/lynx/lynx-subscribe-session-storage), and [`lynx.unsubscribeSessionStorage`](/api/lynx-api/lynx/lynx-unsubscribe-session-storage) APIs on HarmonyOS for session-scoped cross-page state.
+HarmonyOS now supports the SessionStorage API for cross-page data sharing. Front-end code can use the existing [`lynx.setSessionStorageItem`](/api/lynx-api/lynx/lynx-set-session-storage), [`lynx.getSessionStorageItem`](/api/lynx-api/lynx/lynx-get-session-storage), [`lynx.subscribeSessionStorage`](/api/lynx-api/lynx/lynx-subscribe-session-storage), and [`lynx.unsubscribeSessionStorage`](/api/lynx-api/lynx/lynx-unsubscribe-session-storage) APIs to share session-scoped state across pages.
 
 ## DevTool Protocol and Debugging
 
 DevTool protocol and debugging improvements include:
 
-- MTS debugging supports pre-execute and pre-decode `MTSRuntime`.
+- MTS debugging now works with pre-executed and pre-decoded `MTSRuntime` instances.
 - CDP support adds `DOM.describeNode`.
 - `DOM.getDocument` now supports the `depth` parameter.
 - DevTool can query `PerformanceEntry` data through the CDP Performance domain.
