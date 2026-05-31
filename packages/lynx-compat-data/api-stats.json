@@ -260,7 +260,7 @@
         "supported": {
           "android": 45,
           "ios": 45,
-          "harmony": 36,
+          "harmony": 40,
           "web_lynx": 10,
           "clay_android": 1,
           "clay_ios": 1,
@@ -271,7 +271,7 @@
         "coverage": {
           "android": 100,
           "ios": 100,
-          "harmony": 80,
+          "harmony": 89,
           "web_lynx": 22,
           "clay_android": 2,
           "clay_ios": 2,
@@ -628,8 +628,8 @@
         "exclusive_count": 12
       },
       "harmony": {
-        "supported_count": 842,
-        "coverage_percent": 82,
+        "supported_count": 846,
+        "coverage_percent": 83,
         "exclusive_count": 7
       },
       "web_lynx": {
@@ -39560,7 +39560,7 @@
         "supported": {
           "android": 45,
           "ios": 45,
-          "harmony": 36,
+          "harmony": 40,
           "web_lynx": 10,
           "clay_android": 1,
           "clay_ios": 1,
@@ -39571,7 +39571,7 @@
         "coverage": {
           "android": 100,
           "ios": 100,
-          "harmony": 80,
+          "harmony": 89,
           "web_lynx": 22,
           "clay_android": 2,
           "clay_ios": 2,
@@ -39806,7 +39806,7 @@
           "support": {
             "android": "2.9",
             "ios": "2.9",
-            "harmony": false,
+            "harmony": "3.8",
             "web_lynx": false,
             "clay_android": false,
             "clay_ios": false,
@@ -40286,7 +40286,7 @@
           "support": {
             "android": "2.9",
             "ios": "2.9",
-            "harmony": false,
+            "harmony": "3.8",
             "web_lynx": false,
             "clay_android": false,
             "clay_ios": false,
@@ -40334,7 +40334,7 @@
           "support": {
             "android": "2.9",
             "ios": "2.9",
-            "harmony": false,
+            "harmony": "3.8",
             "web_lynx": false,
             "clay_android": false,
             "clay_ios": false,
@@ -40350,7 +40350,7 @@
           "support": {
             "android": "2.9",
             "ios": "2.9",
-            "harmony": false,
+            "harmony": "3.8",
             "web_lynx": false,
             "clay_android": false,
             "clay_ios": false,
@@ -40364,22 +40364,6 @@
         "android": [],
         "ios": [],
         "harmony": [
-          {
-            "path": "lynx-api/lynx/getSessionStorageItem",
-            "name": "The `lynx.getSessionStorageItem` method is used to retrieve data shared across multiple LynxViews. This enables data sharing between multiple pages via `SessionStorage`. You can call [lynx.setSessionStorageItem](./lynx-set-session-storage.mdx) to set the cached data.",
-            "doc_url": "api/lynx-api/lynx/lynx-get-session-storage",
-            "support": {
-              "android": "2.9",
-              "ios": "2.9",
-              "harmony": false,
-              "web_lynx": false,
-              "clay_android": false,
-              "clay_ios": false,
-              "clay_macos": "3.5",
-              "clay_windows": "3.5",
-              "clay": "3.5"
-            }
-          },
           {
             "path": "lynx-api/lynx/performance.profileStart()",
             "name": "profileStart()",
@@ -40451,54 +40435,6 @@
             "support": {
               "android": "3.3",
               "ios": "3.3",
-              "harmony": false,
-              "web_lynx": false,
-              "clay_android": false,
-              "clay_ios": false,
-              "clay_macos": "3.5",
-              "clay_windows": "3.5",
-              "clay": "3.5"
-            }
-          },
-          {
-            "path": "lynx-api/lynx/setSessionStorageItem",
-            "name": "The `lynx.setSessionStorageItem` method is used to set data shared across multiple LynxViews.",
-            "doc_url": "api/lynx-api/lynx/lynx-set-session-storage",
-            "support": {
-              "android": "2.9",
-              "ios": "2.9",
-              "harmony": false,
-              "web_lynx": false,
-              "clay_android": false,
-              "clay_ios": false,
-              "clay_macos": "3.5",
-              "clay_windows": "3.5",
-              "clay": "3.5"
-            }
-          },
-          {
-            "path": "lynx-api/lynx/subscribeSessionStorage",
-            "name": "The `lynx.subscribeSessionStorage` method is used to listen for changes in data shared across multiple LynxViews. This enables data sharing between multiple pages via `SessionStorage`. You can call [lynx.setSessionStorageItem](./lynx-set-session-storage.mdx) to set the cached data.",
-            "doc_url": "api/lynx-api/lynx/lynx-subscribe-session-storage",
-            "support": {
-              "android": "2.9",
-              "ios": "2.9",
-              "harmony": false,
-              "web_lynx": false,
-              "clay_android": false,
-              "clay_ios": false,
-              "clay_macos": "3.5",
-              "clay_windows": "3.5",
-              "clay": "3.5"
-            }
-          },
-          {
-            "path": "lynx-api/lynx/unsubscribeSessionStorage",
-            "name": "The `lynx.unsubscribeSessionStorage` method is used to cancel the listener for changes in data shared across multiple LynxViews. This enables data sharing between multiple pages via `SessionStorage`. You can call [lynx.setSessionStorageItem](./lynx-set-session-storage.mdx) to set the cached data. After cancellation, the cached data corresponding to this key will no longer be listened to.",
-            "doc_url": "api/lynx-api/lynx/lynx-unsubscribe-session-storage",
-            "support": {
-              "android": "2.9",
-              "ios": "2.9",
               "harmony": false,
               "web_lynx": false,
               "clay_android": false,
@@ -40629,7 +40565,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -41013,7 +40949,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -41045,7 +40981,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -41061,7 +40997,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -41223,7 +41159,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -41703,7 +41639,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -41751,7 +41687,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -41767,7 +41703,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -41929,7 +41865,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -42409,7 +42345,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -42457,7 +42393,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -42473,7 +42409,7 @@
             "support": {
               "android": "2.9",
               "ios": "2.9",
-              "harmony": false,
+              "harmony": "3.8",
               "web_lynx": false,
               "clay_android": false,
               "clay_ios": false,
@@ -96398,7 +96334,7 @@
           "version_added": "2.9"
         },
         "harmony": {
-          "version_added": false
+          "version_added": "3.8"
         },
         "web_lynx": {
           "version_added": false
@@ -97478,7 +97414,7 @@
           "version_added": "2.9"
         },
         "harmony": {
-          "version_added": false
+          "version_added": "3.8"
         },
         "web_lynx": {
           "version_added": false
@@ -97586,7 +97522,7 @@
           "version_added": "2.9"
         },
         "harmony": {
-          "version_added": false
+          "version_added": "3.8"
         },
         "web_lynx": {
           "version_added": false
@@ -97622,7 +97558,7 @@
           "version_added": "2.9"
         },
         "harmony": {
-          "version_added": false
+          "version_added": "3.8"
         },
         "web_lynx": {
           "version_added": false

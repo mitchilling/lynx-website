@@ -1,7 +1,7 @@
 {
   "current_version": "next",
-  "LYNX_VERSION": "3.7.0",
-  "PRIMJS_VERSION": "3.7.0",
+  "LYNX_VERSION": "3.8.0",
+  "PRIMJS_VERSION": "3.8.0",
   "versions": [
     {
       "type": "developing",
@@ -11,6 +11,12 @@
     },
     {
       "type": "latest",
+      "version_number": "3.8",
+      "repo_branch": "release/3.8",
+      "docs_link": "/3.8"
+    },
+    {
+      "type": "previous",
       "version_number": "3.7",
       "repo_branch": "release/3.7",
       "docs_link": "/3.7"
