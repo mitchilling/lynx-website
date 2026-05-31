@@ -1,10 +1,10 @@
 ---
-title: 'Lynx 3.8: WebAssembly on Android, Plus Platform Updates'
+title: 'Lynx 3.8: WebAssembly on Android, Adaptive Layout, and More'
 date: 2026-05-31
 sidebar: false
 authors: ['mitchell', 'lynx']
 badge_text: 'Lynx 3.8 is released!'
-description: 'Lynx 3.8 starts the monthly release cadence with WebAssembly on Android, frame auto-sizing, line-aware text fitting, HarmonyOS SessionStorage, LynxEngine reuse, and DevTool protocol support.'
+description: 'Lynx 3.8 starts the monthly release cadence with WebAssembly on Android, adaptive layout and text fitting, HarmonyOS SessionStorage, LynxEngine reuse, and DevTool protocol support.'
 ---
 
 import { BlogHeader, Go } from '@lynx';
@@ -39,11 +39,9 @@ The complete example below shows the same flow in a Lynx page:
 
 The current implementation covers `WebAssembly.Module` and `WebAssembly.Instance` fully, plus common-case usage of `WebAssembly.Memory`, `WebAssembly.Table`, and `WebAssembly.Global`.
 
-## Layout, Text, and Platform Coverage
+## Adaptive Layout, Text, and Platform Behavior
 
-This release improves how Lynx pages compose with each other, fit text into constrained layouts, and converge behavior across supported platforms.
-
-For component-level UI work, see our recent [lynx-ui](/blog/lynx-ui) announcement, a ready-to-use component library for building Lynx interfaces across platforms.
+This release improves how Lynx content adapts to its host container, fits text into constrained layouts, and closes platform-specific behavior gaps.
 
 ### `<frame>` Auto-sizing and Load Metrics
 
@@ -131,6 +129,10 @@ DevTool protocol and debugging improvements include:
 - CDP support adds `DOM.describeNode`.
 - `DOM.getDocument` now supports the `depth` parameter.
 - DevTool can query `PerformanceEntry` data through the CDP Performance domain.
+
+## Also in the Component Layer: lynx-ui
+
+In our previous post, we announced [lynx-ui](/blog/lynx-ui), a ready-to-use component library for building cross-platform Lynx interfaces. Lynx 3.8 improves lower-level layout, text fitting, and platform behavior; lynx-ui covers the component layer with production-ready controls, motion patterns, and interaction primitives.
 
 ## Upgrade Guide
 
