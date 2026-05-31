@@ -15,6 +15,8 @@ Lynx 3.8 is now officially released!
 
 As outlined in our [2026 roadmap](/blog/lynx-open-source-roadmap-2026), Lynx 3.8 kicks off our new monthly release cadence. Moving to monthly means each release will be smaller and more focused. For 3.8, that's **WebAssembly** on Android, `<frame>` auto-sizing, line-aware text fitting, HarmonyOS SessionStorage, `LynxEngine` reuse, and DevTool protocol updates.
 
+Before diving into 3.8, don't miss our recent [lynx-ui](/blog/lynx-ui) announcement, where we introduced ready-to-use components for building cross-platform Lynx interfaces.
+
 ## WebAssembly on Android
 
 This release introduces initial [WebAssembly](/guide/scripting-runtime/webassembly) support on Android via the PrimJS runtime. Lynx apps can now load and execute WebAssembly modules on the background thread, making it possible to move computation-heavy logic into WebAssembly when JavaScript isn't fast enough.
@@ -129,10 +131,6 @@ DevTool protocol and debugging improvements include:
 - CDP support adds `DOM.describeNode`.
 - `DOM.getDocument` now supports the `depth` parameter.
 - DevTool can query `PerformanceEntry` data through the CDP Performance domain.
-
-## Also in the Component Layer: lynx-ui
-
-In our previous post, we announced [lynx-ui](/blog/lynx-ui), a ready-to-use component library for building cross-platform Lynx interfaces. Lynx 3.8 improves lower-level layout, text fitting, and platform behavior; lynx-ui covers the component layer with production-ready controls, motion patterns, and interaction primitives.
 
 ## Upgrade Guide
 
