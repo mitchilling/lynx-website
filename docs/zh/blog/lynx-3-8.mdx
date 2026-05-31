@@ -17,7 +17,7 @@ Lynx 3.8 已经正式发布！
 
 ## Android 上的 WebAssembly
 
-本次发布通过 PrimJS 运行时集成，在 Android 上引入了基础 [WebAssembly](/guide/scripting-runtime/webassembly) 支持。Lynx 应用现在可以在后台线程加载和执行 WebAssembly 模块，让计算密集型逻辑在 JavaScript 之外获得新的实现选择。
+本次发布通过 PrimJS 运行时集成，在 Android 上引入了基础 [WebAssembly](/guide/scripting-runtime/webassembly) 支持。Lynx 应用现在可以在后台线程加载和执行 WebAssembly 模块，让计算密集型逻辑在 JavaScript 不够合适时获得另一种实现选择。
 
 当前实现主要覆盖常见的构造函数式使用方式：
 
@@ -37,13 +37,13 @@ const result = instance.exports.add(1, 2);
   entry="src"
 />
 
-当前支持覆盖常见场景下的 `WebAssembly.Module` 和 `WebAssembly.Instance`，以及 `WebAssembly.Memory`、`WebAssembly.Table` 和 `WebAssembly.Global`。
+当前支持覆盖 `WebAssembly.Module` 和 `WebAssembly.Instance`，以及常见场景下的 `WebAssembly.Memory`、`WebAssembly.Table` 和 `WebAssembly.Global`。
 
 ## UI 与平台更新
 
 本次发布也带来了多项更新，以改进嵌入式 UI 组合、文本自适应和平台覆盖。
 
-在组件级 UI 方面，可以参考我们最近发布的 [lynx-ui](/zh/blog/lynx-ui)，这是一套开箱即用的组件库，可用于构建跨平台 Lynx 界面。
+在组件级 UI 方面，可以参考我们最近发布的 [lynx-ui](/blog/lynx-ui)，这是一套开箱即用的组件库，可用于构建跨平台 Lynx 界面。
 
 ### `<frame>` 自适应尺寸与加载指标
 
@@ -53,7 +53,7 @@ const result = instance.exports.add(1, 2);
 <frame src={url} auto-width auto-height />
 ```
 
-它也增强了启动和可观测性支持，包括预设布局、更好的 `data` 与 `global-props` 传递、通过 `layoutchange` 上报固有尺寸，以及 Android/iOS 帧加载指标。
+它也增强了启动和可观测性支持，包括预设布局、更好的 `data` 与 `global-props` 传递、通过 `layoutchange` 上报固有尺寸，以及 Android/iOS 上的 `<frame>` 加载指标。
 
 ### 基于行数的自适应字号范围
 
@@ -121,7 +121,7 @@ group.release();
 
 ### HarmonyOS 上的 SessionStorage
 
-HarmonyOS 现在支持 [SessionStorage API](/api/lynx-api/lynx/lynx-get-session-storage)，可用于跨页面数据共享。前端代码可以在 HarmonyOS 上使用已有的 `lynx.setSessionStorageItem`、`lynx.getSessionStorageItem`、`lynx.subscribeSessionStorage` 和 `lynx.unsubscribeSessionStorage` API，管理 session 级的跨页面状态。
+HarmonyOS 现在支持 SessionStorage API，可用于跨页面数据共享。前端代码可以在 HarmonyOS 上使用已有的 [`lynx.setSessionStorageItem`](/api/lynx-api/lynx/lynx-set-session-storage)、[`lynx.getSessionStorageItem`](/api/lynx-api/lynx/lynx-get-session-storage)、[`lynx.subscribeSessionStorage`](/api/lynx-api/lynx/lynx-subscribe-session-storage) 和 [`lynx.unsubscribeSessionStorage`](/api/lynx-api/lynx/lynx-unsubscribe-session-storage) API，管理 session 级的跨页面状态。
 
 ## DevTool 更新
 
@@ -140,4 +140,4 @@ DevTool 协议和调试能力改进包括：
 
 在月度发布节奏下，我们希望每个版本都更容易浏览、更容易尝试，也更容易让大家反馈真实使用感受。
 
-感谢每一位正在使用 Lynx、分享反馈、提交 issue，并帮助项目在开放社区中持续进步的开发者。我们下一个月度版本再见。
+感谢每一位正在使用 Lynx、分享反馈、提交 issue，并帮助项目在开放社区中持续进步的开发者。下次月度发布再见。

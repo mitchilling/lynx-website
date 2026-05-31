@@ -37,7 +37,7 @@ The following Lynx example shows the same flow in a page:
   entry="src"
 />
 
-The current support covers `WebAssembly.Module` and `WebAssembly.Instance`, along with `WebAssembly.Memory`, `WebAssembly.Table`, and `WebAssembly.Global` in common cases.
+The current support covers `WebAssembly.Module` and `WebAssembly.Instance`, along with common-case support for `WebAssembly.Memory`, `WebAssembly.Table`, and `WebAssembly.Global`.
 
 ## UI and Platform Updates
 
@@ -121,7 +121,7 @@ group.release();
 
 ### SessionStorage on HarmonyOS
 
-HarmonyOS now supports the [SessionStorage API](/api/lynx-api/lynx/lynx-get-session-storage) for cross-page data sharing. Frontend code can use the existing `lynx.setSessionStorageItem`, `lynx.getSessionStorageItem`, `lynx.subscribeSessionStorage`, and `lynx.unsubscribeSessionStorage` APIs on HarmonyOS for session-scoped cross-page state.
+HarmonyOS now supports the SessionStorage API for cross-page data sharing. Front-end code can use the existing [`lynx.setSessionStorageItem`](/api/lynx-api/lynx/lynx-set-session-storage), [`lynx.getSessionStorageItem`](/api/lynx-api/lynx/lynx-get-session-storage), [`lynx.subscribeSessionStorage`](/api/lynx-api/lynx/lynx-subscribe-session-storage), and [`lynx.unsubscribeSessionStorage`](/api/lynx-api/lynx/lynx-unsubscribe-session-storage) APIs on HarmonyOS for session-scoped cross-page state.
 
 ## DevTool Updates
 
@@ -138,6 +138,6 @@ To upgrade to Lynx 3.8, follow the [integration guide](https://lynxjs.org/3.8/gu
 
 ## Thank You
 
-With this monthly rhythm, we want each release to be easier to scan, easier to try, and easier to give feedback on.
+With this monthly rhythm, we want each release to be easier to skim, easier to try, and easier to give feedback on.
 
 Thank you to everyone building with Lynx, sharing feedback, filing issues, and helping the project improve in the open. See you in the next monthly release.
