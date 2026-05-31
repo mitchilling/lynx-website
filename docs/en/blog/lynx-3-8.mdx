@@ -1,10 +1,10 @@
 ---
-title: 'Lynx 3.8: WebAssembly on Android, UI Updates, and Native APIs'
+title: 'Lynx 3.8: Android WebAssembly, Smarter Layout, and Native Integration'
 date: 2026-05-31
 sidebar: false
 authors: ['mitchell', 'lynx']
 badge_text: 'Lynx 3.8 is released!'
-description: 'Lynx 3.8 is now officially released! This release introduces basic WebAssembly support on Android, frame auto-sizing, line-based auto font size ranges, HarmonyOS SessionStorage, and native API and DevTool updates.'
+description: 'Lynx 3.8 introduces initial WebAssembly support on Android, frame auto-sizing, line-aware text fitting, HarmonyOS SessionStorage, LynxEngine reuse, and DevTool protocol improvements.'
 ---
 
 import { BlogHeader, Go } from '@lynx';
@@ -13,11 +13,18 @@ import { BlogHeader, Go } from '@lynx';
 
 Lynx 3.8 is now officially released!
 
-Following our [2026 roadmap update](/blog/lynx-open-source-roadmap-2026), Lynx 3.8 is the first release in our faster monthly release cadence. This release brings basic **WebAssembly** support on Android, `<frame>` auto-sizing, line-based auto font size ranges, HarmonyOS SessionStorage, and focused native API and DevTool updates.
+As outlined in our [2026 roadmap](/blog/lynx-open-source-roadmap-2026), Lynx 3.8 kicks off our new monthly release cadence. It centers on initial **WebAssembly** support on Android, better layout primitives for embedded Lynx content, line-aware text fitting, HarmonyOS SessionStorage, and native integration and DevTool protocol improvements.
+
+## Highlights
+
+- **Run WebAssembly on Android.** Lynx can now load and execute WebAssembly modules on the background thread through PrimJS.
+- **Let embedded content size itself.** `<frame>` now supports `auto-width` and `auto-height`, with intrinsic size reporting and load metrics.
+- **Fit text by rendered line count.** `-x-auto-font-size-line-ranges` lets one-line, two-line, and multi-line text use different font-size ranges.
+- **Improve native integration.** `LynxViewGroup` can reuse `LynxEngine`, HarmonyOS adds SessionStorage, and DevTool gains new protocol and debugging capabilities.
 
 ## WebAssembly on Android
 
-This release introduces basic [WebAssembly](/guide/scripting-runtime/webassembly) support on Android through the PrimJS runtime integration. Lynx apps can now load and execute WebAssembly modules on the background thread, making it possible to move computation-heavy logic into WebAssembly when JavaScript is not the best fit.
+This release introduces initial [WebAssembly](/guide/scripting-runtime/webassembly) support on Android through the PrimJS runtime integration. Lynx apps can now load and execute WebAssembly modules on the background thread, making it possible to move computation-heavy logic into WebAssembly when JavaScript is not the best fit.
 
 The current implementation focuses on common constructor-based flows:
 
@@ -28,7 +35,7 @@ const instance = new WebAssembly.Instance(module, imports);
 const result = instance.exports.add(1, 2);
 ```
 
-The following Lynx example shows the same flow in a page:
+The complete example below shows the same flow in a Lynx page:
 
 <Go
   example="webassembly"
@@ -39,9 +46,9 @@ The following Lynx example shows the same flow in a page:
 
 The current support covers `WebAssembly.Module` and `WebAssembly.Instance`, along with common-case support for `WebAssembly.Memory`, `WebAssembly.Table`, and `WebAssembly.Global`.
 
-## UI and Platform Updates
+## Layout, Text, and Platform Coverage
 
-This release also brings several updates that improve embedded UI composition, text fitting, and platform coverage.
+This release improves how Lynx pages compose with each other, fit text into constrained layouts, and converge behavior across supported platforms.
 
 For component-level UI work, see our recent [lynx-ui](/blog/lynx-ui) announcement, a ready-to-use component library for building Lynx interfaces across platforms.
 
@@ -53,9 +60,9 @@ For component-level UI work, see our recent [lynx-ui](/blog/lynx-ui) announcemen
 <frame src={url} auto-width auto-height />
 ```
 
-It also gains better startup and observability support, including preset layout, improved `data` and `global-props` transfer, intrinsic size reporting through `layoutchange`, and Android/iOS frame load metrics.
+It also improves startup and observability with preset layout, better `data` and `global-props` transfer, intrinsic size reporting through `layoutchange`, and Android/iOS frame load metrics.
 
-### Line-Based Auto Font Size Ranges
+### Line-aware Auto Font Sizing
 
 The new [`-x-auto-font-size-line-ranges`](/api/css/properties/-x-auto-font-size-line-ranges) CSS property lets developers define different font-size search ranges based on the actual number of rendered lines. Use it with `-x-auto-font-size: true`:
 
@@ -79,13 +86,13 @@ This is useful for titles, cards, and feed layouts where one-line, two-line, and
   highlight="{20-23}"
 />
 
-### Platform Coverage Updates
+### Desktop Exposure and HarmonyOS Animation
 
 macOS and Windows now support [`enable-exposure-ui-clip`](/api/elements/built-in/view.html#enable-exposure-ui-clip), giving developers more control over exposure calculations in complex layouts.
 
-Platform coverage also improves with HarmonyOS `<view>` adding [keyframe animation](/api/css/properties/animation) pipeline support.
+HarmonyOS `<view>` also gains [keyframe animation](/api/css/properties/animation) pipeline support.
 
-## Native APIs
+## Native Integration
 
 ### Lynx Engine Reuse in LynxViewGroup
 
@@ -123,7 +130,7 @@ group.release();
 
 HarmonyOS now supports the SessionStorage API for cross-page data sharing. Front-end code can use the existing [`lynx.setSessionStorageItem`](/api/lynx-api/lynx/lynx-set-session-storage), [`lynx.getSessionStorageItem`](/api/lynx-api/lynx/lynx-get-session-storage), [`lynx.subscribeSessionStorage`](/api/lynx-api/lynx/lynx-subscribe-session-storage), and [`lynx.unsubscribeSessionStorage`](/api/lynx-api/lynx/lynx-unsubscribe-session-storage) APIs on HarmonyOS for session-scoped cross-page state.
 
-## DevTool Updates
+## DevTool Protocol and Debugging
 
 DevTool protocol and debugging improvements include:
 
