@@ -183,6 +183,14 @@ export default defineConfig({
           from: '^/zh/guide/start/tutorial-product-detail(\\.html)?$',
           to: '/zh/learn/product-detail.html',
         },
+        {
+          from: '^/api/genui\\.html$',
+          to: '/api/genui/index.html',
+        },
+        {
+          from: '^/zh/api/genui\\.html$',
+          to: '/zh/api/genui/index.html',
+        },
       ],
     }),
     ...(!IS_LIGHTWEIGHT_BUILD

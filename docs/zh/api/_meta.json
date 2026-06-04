@@ -19,6 +19,13 @@
     "collapsed": true
   },
   {
+    "type": "dir",
+    "name": "genui",
+    "label": "@lynx-js/genui",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
     "type": "divider"
   },
   {
