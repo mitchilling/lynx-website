@@ -48,7 +48,11 @@
     "tiktoken",
     "genui",
     "openui",
-    "impls"
+    "impls",
+    "gaoachao",
+    "jkzing",
+    "Jingkai",
+    "zjkdddd"
   ],
   "maxNumberOfProblems": 1000,
   "useGitignore": true,
